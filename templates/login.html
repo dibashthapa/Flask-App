@@ -1,14 +1,19 @@
 {% extends "base.html" %}
-{%block content%}
+{%block head%}
+{% if status==False%}
+<p>Invalid username or password</p>
+{% endif %}
+{% endblock %}
+{% block content %}
 <form id="login" action="/login" method="POST">
 <div class="col-sm-4">
     <div class="form-group">
         <label for="email">Email:</label>
-        <input class="form-control" type="email" style="width:200px;"> 
+        <input class="form-control" type="email" name="Email" style="width:200px;"> 
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" style="width:200px;">
+        <input type="password" class="form-control" name="Password" style="width:200px;">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Log In</button>

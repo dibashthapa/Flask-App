@@ -3,10 +3,11 @@ import session
 from flask import *
 from flask_mysqldb import MySQL
 
+
  
 app = Flask(__name__)
 mysql= MySQL(app)
-
+app.secret_key="dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
@@ -32,9 +33,13 @@ def login():
       mysql.connection.commit()
       account=cur.fetchone()
       if account:
-         return "Login successful"
+         session['LoggedIn']=True
+         session['Id']=account[0]
+         session['Email']=account[1]
+         return render_template("index.html",email=account[1])
       else:
-         return "Error"
+         status=False
+         return render_template("login.html",status=status)
 @app.route('/register',methods=['GET','POST'])
 def register():
    if request.method=='GET':
