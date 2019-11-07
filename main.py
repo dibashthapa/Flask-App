@@ -16,11 +16,25 @@ app.config['MYSQL_DB'] = 'MyDB'
 def hello_world():
    return render_template("index.html")
 
+
 @app.route('/login',methods=['GET','POST'])
 def login():
    if request.method=='GET':
       return render_template("login.html")
-   
+   else:
+      details=request.form
+      Email=details['Email']
+      Password=details['Password']
+      cur=mysql.connection.cursor()
+
+      query_string = "SELECT * FROM Users WHERE Email = %s AND Password=%s"
+      cur.execute(query_string, (Email,Password))
+      mysql.connection.commit()
+      account=cur.fetchone()
+      if account:
+         return "Login successful"
+      else:
+         return "Error"
 @app.route('/register',methods=['GET','POST'])
 def register():
    if request.method=='GET':
