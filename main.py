@@ -36,7 +36,7 @@ def login():
          session['LoggedIn']=True
          session['Id']=account[0]
          session['Email']=account[1]
-         return render_template("index.html",email=account[1])
+         return render_template("index.html",email=account[1],status=session['LoggedIn'])
       else:
          status=False
          return render_template("login.html",status=status)
