@@ -33,11 +33,12 @@ def login():
       mysql.connection.commit()
       account=cur.fetchone()
       if account:
+     
          session['LoggedIn']=True
          session['Email']=account[2]
          session['Name']=account[1]
-         return redirect(url_for("home",status=session['LoggedIn'],Name=account[1]))
-         
+         return render_template("index.html",Status=session['LoggedIn'],Name=account[1])
+         return redirect("/")
          
       else:
          session['LoggedIn']=False

@@ -1,12 +1,17 @@
 {%extends "base.html"%}
-
-{% block content%}
-{% if ==True %}
-
-<h1>Hello User</h1>
-<button type="submit" class="btn btn-primary">Create the group chat</button>
-
-{% endif %}
-
-
+{%block head %}
 {% endblock %}
+{% block content%}
+{% if Status==True %}
+<h1>Hello {{Name}}</h1>
+
+<nav>
+<ul class="nav navbar-nav navbar-left">
+ 
+  </ul>
+</div>
+</nav> 
+{% endif %}
+{% endblock %}
+
+
