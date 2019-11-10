@@ -1,16 +1,20 @@
 {%extends "base.html"%}
-{%block head %}
-{% endblock %}
 {% block content%}
 {% if Status==True %}
-<h1>Hello {{Name}}</h1>
+{% block head %}
+{% endblock%}
+{%block footer %}
+{% endblock %}
+<p>{{Name}} joined the chat</p>
 
-<nav>
-<ul class="nav navbar-nav navbar-left">
- 
-  </ul>
-</div>
-</nav> 
+<script type="text/javascript">
+$(document).ready(function(){
+    var socket = io.connect('http://127.0.0.1:5000');
+    socket.on('connect',function(){
+        socket.send('hello');
+    });
+})
+</script>
 {% endif %}
 {% endblock %}
 

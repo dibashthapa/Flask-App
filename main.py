@@ -2,11 +2,12 @@
 import session
 from flask import *
 from flask_mysqldb import MySQL
-
+from flask_socketio import SocketIO,send
 
  
 app = Flask(__name__)
 mysql= MySQL(app)
+socketio = SocketIO(app)
 app.secret_key="dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -38,7 +39,7 @@ def login():
          session['Email']=account[2]
          session['Name']=account[1]
          return render_template("index.html",Status=session['LoggedIn'],Name=account[1])
-         return redirect("/")
+     
          
       else:
          session['LoggedIn']=False
@@ -59,7 +60,10 @@ def register():
       mysql.connection.commit()
       cur.close()
       return "success"
-
+@socketio.on('message')
+def handleMessage(msg):
+   print(msg)
+   send(msg,broadcast=True)
 
    
 if __name__ == '__main__':
