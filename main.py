@@ -34,7 +34,7 @@ def login():
       mysql.connection.commit()
       account=cur.fetchone()
       if account:
-     
+ 
          session['LoggedIn']=True
          session['Email']=account[2]
          session['Name']=account[1]
@@ -62,9 +62,8 @@ def register():
       return "success"
 @socketio.on('message')
 def handleMessage(msg):
-   print(msg)
-   send(msg,broadcast=True)
+	print('Message: ' + msg)
+	send(msg, broadcast=True)
 
- 
 if __name__ == '__main__':
-	socketio.run(app)
+	socketio.run(app,debug=True)
