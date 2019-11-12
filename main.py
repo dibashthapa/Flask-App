@@ -66,11 +66,12 @@ def register():
 
 
 @socketio.on('message from user',namespace='/message')
-def handleMessage(message,name):
-   print('Message:' + message)
-   print(name,'has sent a message')
-
-   emit('from flask',message,name,broadcast=True)
+def handleMessage(data):
+    messages=data['messages']
+    user=data['names']
+    print(messages)
+    print(user)
+    emit('from flask',data,broadcast=True)
 
 
 
