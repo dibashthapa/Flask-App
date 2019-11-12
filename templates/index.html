@@ -9,8 +9,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 count=0
-var socket = io();
-var socket_messages=io("127.0.0.1:5000/message")
+var socket = io.connect("127.0.0.1");
+var socket_messages=io.connect("127.0.0.1:5000/message")
 $('#sendbutton').on('click', function(data) {
 var message = $('#myMessage').val();
 var name=$('#Name').val();
