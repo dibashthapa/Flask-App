@@ -18,7 +18,7 @@ socket_messages.emit('message from user', message,name);
 
 	});
 	socket_messages.on('from flask', function(message,name) {
-$('#messages').append("<li>"+message,name+"</li>")
+$('#messages').append("<li>"+name,":",message+"</li>")
 console.log(message)
     });
 });
