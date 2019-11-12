@@ -14,7 +14,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'MyDB'
 
-users={}
+users=[]
 
 @app.route('/')
 def home():
@@ -69,12 +69,14 @@ def register():
 def handleMessage(data):
     messages=data['messages']
     user=data['names']
+    users.append(user)
     print(messages)
-    print(user)
+    print(users)
     emit('from flask',data,broadcast=True)
+  
 
 
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app,debug=True)
