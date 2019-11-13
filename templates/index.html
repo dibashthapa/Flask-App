@@ -8,21 +8,29 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-count=0
+var currentUser
 var socket = io.connect("127.0.0.1");
 var socket_messages=io.connect("127.0.0.1:5000/message")
 $('#sendbutton').on('click', function(data) {
 var message = $('#myMessage').val();
-var name=$('#Name').val();
-socket_messages.emit('message from user',{messages:message,names:name});
+currentUser=$('#Name').val();
+
+socket_messages.emit('message from user',{messages:message,names:currentUser});
 
 	});
 	socket_messages.on('from flask', function(data) {
-$('#messages').append("<li>"+data['names']+":"+data['messages']+"</li>")
-console.log(data['messages'])
-    });
-});
+		$('#messages').append("<li id='usermessage'>"+data['names']+":"+data['messages']+"</li>")
+if (currentUser==data['names']){
+	
+	$('#usermessage').css({
+		'background-color':'blue'
+	})
+	}
 
+
+
+	});
+})
 </script>
 <ul id="messages"></ul>
 <input type="text" id="myMessage">
