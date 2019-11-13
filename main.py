@@ -68,10 +68,10 @@ def register():
 @socketio.on('message from user',namespace='/message')
 def handleMessage(data):
     messages=data['messages']
-    user=data['names']
-    users.append(user)
+  
     print(messages)
-    print(users)
+     
+  
     emit('from flask',data,broadcast=True)
   
 
