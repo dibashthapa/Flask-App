@@ -1,0 +1,16 @@
+{%extends "base.html"%}{% block content%}
+{% if Status==True %}
+{% block head %}{% endblock%}
+{%block footer %}{% endblock %}
+<script src="https://kit.fontawesome.com/c96d3752b6.js" crossorigin="anonymous"></script>
+<input type="hidden" value="{{Name}}" id="Name">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<ul id="messages"></ul>
+<ul id="typingMessages"></ul>
+<input type="text" id="myMessage">
+<i class="fas fa-paper-plane" id="sendbutton" ></i>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{%endif%}
+{%endblock%}
