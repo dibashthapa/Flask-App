@@ -40,7 +40,7 @@ def login():
             session['LoggedIn'] = True
             session['Email'] = account[2]
             session['Name'] = account[1]
-            return render_template("index.html", Status=session['LoggedIn'], Name=account[1])
+            return render_template("chats.html", Status=session['LoggedIn'], Name=account[1])
 
         else:
             session['LoggedIn'] = False
