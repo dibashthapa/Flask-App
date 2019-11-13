@@ -7,18 +7,23 @@ from flask_socketio import SocketIO, send, emit
 
 app = Flask(__name__)
 mysql = MySQL(app)
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 app.secret_key = "dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = 'asdf'
 app.config['MYSQL_DB'] = 'MyDB'
 
 users=[]
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    
+    if request.args.get('Name'):
+        Name = request.args.get('Name')
+        return render_template("chats.html", Status=True, Name=Name)
+    else:
+        return render_template("index.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -40,7 +45,8 @@ def login():
             session['LoggedIn'] = True
             session['Email'] = account[2]
             session['Name'] = account[1]
-            return render_template("chats.html", Status=session['LoggedIn'], Name=account[1])
+            # return render_template("chats.html", Status=session['LoggedIn'], Name=account[1])
+            return redirect(url_for('home',Name=account[1]))
 
         else:
             session['LoggedIn'] = False
@@ -63,6 +69,7 @@ def register():
         mysql.connection.commit()
         cur.close()
         return redirect("/login")
+
 @socketio.on("typing",namespace='/message')
 def send_typing(data):
     print(data['names'],"is typing...")
