@@ -63,6 +63,12 @@ def register():
         mysql.connection.commit()
         cur.close()
         return redirect("/login")
+@socketio.on("typing",namespace='/message')
+def send_typing(data):
+    print(data['names'],"is typing...")
+    emit('data typing',data,broadcast=True)
+    
+
 
 
 @socketio.on('message from user',namespace='/message')
@@ -73,7 +79,7 @@ def handleMessage(data):
      
   
     emit('from flask',data,broadcast=True)
-  
+
 
 
 
