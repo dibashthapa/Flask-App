@@ -7,25 +7,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-var currentUser
-var socket = io.connect("127.0.0.1");
-var socket_messages=io.connect("127.0.0.1:5000/message")
-$('#sendbutton').on('click', function(data) {
-var message = $('#myMessage').val();
-currentUser=$('#Name').val();
+	$(document).ready(function () {
+				let currentUser;
+				var socket = io.connect("127.0.0.1");
+				var socket_messages = io.connect("127.0.0.1:5000/message")
+				$('#sendbutton').on('click', function (data) {
+					var message = $('#myMessage').val();
+					currentUser = $('#Name').val();
 
-socket_messages.emit('message from user',{messages:message,names:currentUser});
+					socket_messages.emit('message from user', {
+						messages: message,
+						names: currentUser
+					});
 
-	});
-	socket_messages.on('from flask', function(data) {
-		$('#messages').append("<li id='usermessage'>"+data['names']+":"+data['messages']+"</li>")
-if (currentUser==data['names']){
-	
-	$('#usermessage').css({
-		'background-color':'blue'
-	})
-	}
+				});
+				socket_messages.on('from flask', function (data) {
+
+
+
+
+							var textToAppend = `<li id = "usermessage" ${currentUser == data['names'] ? 'style="background-color:blue" >' : '>' } ${data['names']} : ${data['messages']}`
+
+			
+		
+		$('#messages').append(textToAppend)
+		
 
 
 
@@ -39,5 +45,3 @@ if (currentUser==data['names']){
 <p>Please <a href="/login">login</a> or <a href="/register">register</a></p>
 {% endif %}
 {% endblock %}
-
-
