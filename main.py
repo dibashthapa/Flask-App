@@ -11,7 +11,7 @@ socketio = SocketIO(app)
 app.secret_key = "dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = 'asdf'
 app.config['MYSQL_DB'] = 'MyDB'
 
 users=[]
