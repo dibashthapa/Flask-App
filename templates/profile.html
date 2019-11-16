@@ -1,15 +1,21 @@
-{%extends "index.html" %}
-<p>Welcome {{Name}}</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-<h1>hi {{filename}}</h1>
-<h1>Upload Your Profile Picture</h1>
+
 {% if filename%}
+
 <img src="{{url_for('send_image', filename=filename)}}" height="150px" width="150px" style="border-radius:50%;">
+<label for="name">Name:Dibash</label>
 {% else %}
+
+<h1>Upload Your Profile Picture</h1>
+<form action="/upload" method="POST"  enctype = "multipart/form-data">  
 <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" height="150px" width="150px" style="border-radius:50%;">
 <input type="file" class="btn btn-primary" name="image">
 <button type="submit" class="btn btn-primary">Upload</button>
 </form>
-<form action="/upload" method="POST"  enctype = "multipart/form-data">  
+
 
     {% endif %}
