@@ -1,0 +1,15 @@
+{%extends "index.html" %}
+<p>Welcome {{Name}}</p>
+
+<h1>hi {{filename}}</h1>
+<h1>Upload Your Profile Picture</h1>
+{% if filename%}
+<img src="{{url_for('send_image', filename=filename)}}" height="150px" width="150px" style="border-radius:50%;">
+{% else %}
+<img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" height="150px" width="150px" style="border-radius:50%;">
+<input type="file" class="btn btn-primary" name="image">
+<button type="submit" class="btn btn-primary">Upload</button>
+</form>
+<form action="/upload" method="POST"  enctype = "multipart/form-data">  
+
+    {% endif %}

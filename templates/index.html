@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 {% if Status==True %}
-{% block head %}
-<p>Welcome {{Name}}</p>
-
-<h1>hi {{filename}}</h1>
-<h1>Upload Your Profile Picture</h1>
-{% if filename%}
-<img src="{{url_for('send_image', filename=filename)}}" height="150px" width="150px" style="border-radius:50%;">
-{% else %}
-<img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" height="150px" width="150px" style="border-radius:50%;">
-{% endif %}
-<form action="/upload" method="POST"  enctype = "multipart/form-data">  
-
-<input type="file" class="btn btn-primary" name="image">
-<button type="submit" class="btn btn-primary">Upload</button>
-</form>
+{% block head %}{% endblock %}
+{% block content %}
+<h1>Welcome {{Name}}</h1>
+<nav>
+<ul class="list-group"> 
+  <li class="list-group-item"><a href="#">Make Notes</a></li>
+  <li class="list-group-item"><a href="#">Make ToDoList</a></li>
+  <li class="list-group-item"><a href="#">Create a blog</a></li>
+  <li class="list-group-item"><a href="#">View Results</a></li>
+  <li class="list-group-item"><a href="#">Chat</a></li>
+  <li class="list-group-item"><a href="#">Settings</a></li>
+</ul>
+</nav>
 {% endblock %}
-{% endif %}
+{% endif  %}
 
 

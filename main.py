@@ -3,11 +3,13 @@ import os
 from flask_mysqldb import MySQL
 from werkzeug import secure_filename
 from flask_socketio import SocketIO, send, emit
+
 # import code for encoding urls and generating md5 hashes
 import urllib, hashlib
 
 app = Flask(__name__)
 mysql = MySQL(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 app.secret_key = "dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
@@ -25,7 +27,7 @@ def home():
         Name = request.args.get('Name')
         return render_template("index.html", Status=True, Name=Name)
     else:
-        return render_template("index.html")
+        return render_template("base.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -90,8 +92,5 @@ def send_image(filename):
 
 
 
-
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app,debug=True)
