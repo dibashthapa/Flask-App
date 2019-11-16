@@ -29,7 +29,7 @@ def home():
     else:
         return render_template("base.html")
 
-
+#Login For user and setting session objects
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -45,18 +45,13 @@ def login():
         mysql.connection.commit()
         account = cur.fetchone()
         if account:
-
-            session['LoggedIn'] = True
             session['Email'] = account[2]
             session['Name'] = account[1]
-            
             return redirect(url_for('home',Name=account[1]))
-
         else:
-            session['LoggedIn'] = False
-            return render_template("login.html", status=session['LoggedIn'])
+            return render_template("login.html", status=False)
 
-
+#Resgistran for User
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
@@ -65,7 +60,6 @@ def register():
         details = request.form
         Name = details['Name']
         Email = details['Email']
-
         Password = details['Password']
         cur = mysql.connection.cursor()
         cur.execute(
@@ -80,17 +74,21 @@ def upload_file():
         file= request.files['image']
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        print(filename)
-        return render_template("index.html",filename=filename)
-    else:
-        return render_template("index.html")
+        return redirect(url_for("run_profile",filename=filename))
+   
 
 
 @app.route('/upload/<filename>')
 def send_image(filename):
     return send_from_directory("images", filename)
 
-
+@app.route("/profile")
+def run_profile():
+    if request.args.get("filename"):
+        filename=request.args.get("filename")
+        return render_template("profile.html",filename=filename)
+    else:
+        return render_template("profile.html")
 
 if __name__ == '__main__':
     socketio.run(app,debug=True)
