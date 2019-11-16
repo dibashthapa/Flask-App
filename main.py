@@ -78,9 +78,15 @@ def upload_file():
         file= request.files['image']
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        print(filename)
         return render_template("index.html",filename=filename)
     else:
         return render_template("index.html")
+
+
+@app.route('/upload/<filename>')
+def send_image(filename):
+    return send_from_directory("images", filename)
 
 
 
