@@ -1,9 +1,8 @@
-
-import session
 from flask import *
 from flask_mysqldb import MySQL
 from flask_socketio import SocketIO, send, emit
-
+# import code for encoding urls and generating md5 hashes
+import urllib, hashlib
 
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -11,8 +10,10 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 app.secret_key = "dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'asdf'
+app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'MyDB'
+
+ 
 
 users=[]
 
@@ -69,7 +70,9 @@ def register():
         mysql.connection.commit()
         cur.close()
         return redirect("/login")
-
+@app.route("/profile")
+def profile():
+    pass
 @socketio.on("typing",namespace='/message')
 def send_typing(data):
     print(data['names'],"is typing...")
