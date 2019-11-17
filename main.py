@@ -4,8 +4,6 @@ from flask_mysqldb import MySQL
 from werkzeug import secure_filename
 from flask_socketio import SocketIO, send, emit
 
-# import code for encoding urls and generating md5 hashes
-import urllib, hashlib
 
 app = Flask(__name__)
 mysql = MySQL(app)
@@ -22,12 +20,20 @@ users=[]
 
 @app.route('/')
 def home():
-    
-    if request.args.get('Name'):
-        Name = request.args.get('Name')
-        return render_template("index.html", Status=True, Name=Name)
+    if 'Name' in session:
+        print(session['Name'])
+        if(request.args.get("Name")):
+            return render_template("index.html",Status=True,Name=session['Name'])
+        elif(request.args.get("filename")):
+            if ('filename' in session):
+                print(session['filename'])
+                return render_template("profile.html",filename=session['filename'],Name=session['Name'])
+            
+
     else:
         return render_template("base.html")
+
+    
 
 #Login For user and setting session objects
 @app.route('/login', methods=['GET', 'POST'])
@@ -73,9 +79,11 @@ def upload_file():
     if request.method == 'POST':
         file= request.files['image']
         filename = secure_filename(file.filename)
+        session['filename']=filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return redirect(url_for("run_profile",filename=filename))
-   
+    else:
+        return redirect(request.url)
 
 
 @app.route('/upload/<filename>')
@@ -86,7 +94,7 @@ def send_image(filename):
 def run_profile():
     if request.args.get("filename"):
         filename=request.args.get("filename")
-        return render_template("profile.html",filename=filename)
+        return redirect(url_for("home",filename=filename))
     else:
         return render_template("profile.html")
 
