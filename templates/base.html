@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   {% block title %}
-  <title>Make Notes</title>
+  <title>T&S App</title>
   {% endblock %}
   {% block meta %}
   <meta charset="utf-8">
@@ -17,11 +17,21 @@
 <body>
  
     {% block head %}
-  <nav>
-    
-    <a href="/login" class="btn btn-info">Login </a>
-    <a href="/register" class="btn btn-info">Register</a>
-  </nav>
+<p class="lead text-primary bg-success text-center" >Welcome to T&S App.</p>
+<div  style="height:500px;">
+  <p class="lead text-center">Login & Register</p>
+
+ <label for="name">Log in as</label>
+ <ul>
+   <li><a href="/login/student">Student</a></li>
+   <li><a href="/register/teacher">Teacher</a></li>
+ </ul>
+<label for="name">Register As:</label>
+<ul>
+  <li><a href="/register/teacher">Teacher</a></li>
+  <li><a href="/register/student">Student</a></li>
+</ul>
+</div>
 {% endblock %}
 {% block chat %}{% endblock %}
 {%block content %}{% endblock %}
