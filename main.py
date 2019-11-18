@@ -36,26 +36,30 @@ def home():
     
 
 #Login For user and setting session objects
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return render_template("login.html")
-    else:
-        details = request.form
-        Email = details['Email']
-        Password = details['Password']
-        cur = mysql.connection.cursor()
-
-        query_string = "SELECT * FROM Users WHERE Email = %s AND Password=%s"
-        cur.execute(query_string, (Email, Password))
-        mysql.connection.commit()
-        account = cur.fetchone()
-        if account:
-            session['Email'] = account[2]
-            session['Name'] = account[1]
-            return redirect(url_for('home',Name=account[1]))
+@app.route('/login/<name>', methods=['GET', 'POST'])
+def login(name):
+    
+        if request.method == 'GET':
+            if request.args.get("name")=="student":
+                return render_template("login.html")
         else:
-            return render_template("login.html", status=False)
+            if request.args.get("name")=="student":
+                details = request.form
+                Email = details['Email']
+                Password = details['Password']
+                cur = mysql.connection.cursor()
+                query_string = "SELECT * FROM Users WHERE Email = %s AND Password=%s"
+                cur.execute(query_string, (Email, Password))
+                mysql.connection.commit()
+                account = cur.fetchone()
+                if account:
+                    session['Email'] = account[2]
+                    session['Name'] = account[1]
+                    return redirect(url_for('home',Name=account[1]))
+                else:
+                    return render_template("login.html", status=False)
+          
+                
 
 #Resgistran for User
 @app.route('/register', methods=['GET', 'POST'])
@@ -97,6 +101,7 @@ def run_profile():
         return redirect(url_for("home",filename=filename))
     else:
         return render_template("profile.html")
+
 
 if __name__ == '__main__':
     socketio.run(app,debug=True)
