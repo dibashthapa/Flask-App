@@ -3,21 +3,15 @@ import os
 from flask_mysqldb import MySQL
 from werkzeug import secure_filename
 from flask_socketio import SocketIO, send, emit
-
-
 app = Flask(__name__)
 mysql = MySQL(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
-
 app.secret_key = "dibashthapa"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'MyDB'
 app.config['UPLOAD_FOLDER']='images'
-
-users=[]
-
 @app.route('/')
 def home():
     if 'Name' in session:
@@ -28,17 +22,12 @@ def home():
             if ('filename' in session):
                 print(session['filename'])
                 return render_template("profile.html",filename=session['filename'],Name=session['Name'])
-            
-
     else:
         return render_template("base.html")
-
-    
 
 #Login For user and setting session objects
 @app.route('/login/<name>', methods=['GET', 'POST'])
 def login(name):
-    
         if request.method == 'GET':
             if request.args.get("name")=="student":
                 return render_template("login.html")
@@ -58,8 +47,6 @@ def login(name):
                     return redirect(url_for('home',Name=account[1]))
                 else:
                     return render_template("login.html", status=False)
-          
-                
 
 #Resgistran for User
 @app.route('/register', methods=['GET', 'POST'])
