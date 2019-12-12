@@ -1,25 +1,23 @@
-# Flask-App
-this is the flask web application
-# Install Virtual machine using 
-`$sudo apt-get install virtualenv`
+# Flask App
+### Installation
+```sh
+$pip install virtualenv
 
-# Clone this repository
-`$git clone https://github.com/dibashthapa/Flask-App.git`
+$cd Flask-App
 
-# Cd
-`$cd Flask-App`
+$virtualenv venv
 
-# Use virtualenv using
-`$virtualenv venv`
+$source venv/bin/activate
 
-# Activate virtual environment using
-`$source venv/bin/activate`
+$pip install -r requirements.txt
 
-# Install Requirements
-`$pip install flask` <br>
-`$pip install flask_mysqldb` <br>
-`$pip install flask_socketio` <br>
+$python main.py
+```
 
-# Run Python app
-`$python3 main.py`
 
+
+###### Configure database in your system
+1.Install PhpmyAdmin and Mysql <br>
+2.Create a database 'API' <br>
+3.Create a 'User' table and create the columns i.e. id, Name, Email , Password respectively <br>
+4.Congrats , Now You are done
