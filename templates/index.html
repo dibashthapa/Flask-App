@@ -2,17 +2,11 @@
 {% if Status==True %}
 {% block head %}{% endblock %}
 {% block content %}
-<h1>Welcome {{Name}}</h1>
-<nav>
-<ul class="list-group"> 
-  <li class="list-group-item"><a href="/notes">Make Notes</a></li>
-  <li class="list-group-item"><a href="/todo">Make ToDoList</a></li>
-  <li class="list-group-item"><a href="/blog">Create a blog</a></li>
-  <li class="list-group-item"><a href="/result">View Results</a></li>
-  <li class="list-group-item"><a href="/chat">Chat</a></li>
-  <li class="list-group-item"><a href="/profile">Profile</a></li>
+<h1>{{Name}}</h1>
+<ul>
+<li>
+        <img src="{{url_for('send_image', filename=filename)}}" height="150px" width="150px" style="border-radius:50%;">    </li>
 </ul>
-</nav>
 {% endblock %}
 {% endif  %}
 

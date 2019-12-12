@@ -1,9 +1,9 @@
 from flask import *
 import os
 import models 
-
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
-
+app.config['UPLOAD_FOLDER']="images"
 app.secret_key="xjhdjhkjhskjhdkj"
 @app.route('/')
 def home():
@@ -45,35 +45,35 @@ def register():
         data={
         "Name": details['Name'],
         "Email": details['Email'],
-        "Password ":details['Password']
+        "Password":details['Password']
         }
-        print(details['Password'])
-        #models.insert_table(data)
+        
+        models.insert_table(data)
         return redirect("/login")
 
-#@app.route("/upload",methods=['POST','GET'])
-#def upload_file():
-#    if request.method == 'POST':
-#        file= request.files['image']
-#        filename = secure_filename(file.filename)
-#        session['filename']=filename
-#        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#        return redirect(url_for("run_profile",filename=filename))
-#    else:
-#        return redirect(request.url)
+@app.route("/upload",methods=['POST','GET'])
+def upload_file():
+    if request.method == 'POST':
+        file= request.files['image']
+        filename = secure_filename(file.filename)
+        session['filename']=filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for("run_profile",filename=filename))
+    else:
+        return redirect(request.url)
 
 
-#@app.route('/upload/<filename>')
-#def send_image(filename):
-#    return send_from_directory("images", filename)
-#
-#@app.route("/profile")
-#def run_profile():
-#    if request.args.get("filename"):
-#        filename=request.args.get("filename")
-#        return redirect(url_for("home",filename=filename))
-#    else:
-#        return render_template("profile.html")
+@app.route('/upload/<filename>')
+def send_image(filename):
+    return send_from_directory("images", filename)
+
+@app.route("/profile")
+def run_profile():
+    if request.args.get("filename"):
+        filename=request.args.get("filename")
+        return redirect(url_for("home",filename=filename))
+    else:
+        return render_template("profile.html")
 
 
 if __name__ == '__main__':

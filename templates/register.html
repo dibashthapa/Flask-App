@@ -5,26 +5,21 @@
 {% endblock %}
 {%block content%}
 <form action="/register" method="POST">
-
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="Name">Name:</label>
-            <input class="form-control" name="Name" type="text" style="width:200px;"> 
+<div class="container">
+    <div class="form-control">
+            <label for="Name">Name</label>
+            <input type="text"  name="Name" style="width:200px;"> 
+       </div>
+       <div class="form-control">
+            <label for="Email">Email </label>
+            <input type="email"  name="Email" style="width:200px;">
         </div>
-        <div class="form-group">
-            <label for="password">Email:</label>
-            <input type="email" class="form-control" name="Email" style="width:200px;">
-        </div>
-       
-   
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input  type="password" class="form-control" name="Password" style="width:200px;">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-    </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="Password" style="width:200px;">
+            </div>  
+            <button type="submit" >Register</button>
+</div>
 
 </form>
 

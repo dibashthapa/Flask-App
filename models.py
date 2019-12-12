@@ -25,5 +25,4 @@ def select_table(data):
 
 
 
-
 #

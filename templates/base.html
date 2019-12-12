@@ -9,25 +9,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-  
+
 {% endblock %}
 </head>
 <body>
  
     {% block head %}
-<p class="lead text-primary bg-success text-center" >Welcome to T&S App.</p>
-<div  style="height:500px;">
-  <p class="lead text-center">Login & Register</p>
+<div class="navigation-bar">
+  <ul>
+    <li>home</li>
+    <li>services</li>
+    <li>about us</li>
+    <li>contact</li>
 
+  <li><a href="/login">login</a></li>
+  <li><a href="/register">register</a></li>
  
- <ul>
-   <li><a href="/login">Login</a></li>
-   <li><a href="/register">Register</a></li>
- </ul>
-
+ 
+  </ul>
 </div>
+
 {% endblock %}
 {% block chat %}{% endblock %}
 {%block content %}{% endblock %}
