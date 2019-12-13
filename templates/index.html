@@ -2,11 +2,26 @@
 {% if Status==True %}
 {% block head %}{% endblock %}
 {% block content %}
-<h1>{{Name}}</h1>
+<div class="dashboard">
+<img class="profile-image" src="../static/images/dibash.jpg" height="150px" width="150px" style="border-radius:50%"></li>
 <ul>
-<li>
-        <img src="{{url_for('send_image', filename=filename)}}" height="150px" width="150px" style="border-radius:50%;">    </li>
+<li><a href="#"><i class="fas fa-rss"></i>Blogs</a></li>
+<li><a href="/setting"><i class="fas fa-wrench"></i> Setting</a></li>
+
+<li><a href="#"><i class="far fa-envelope"></i>Messages</a></li>
+<li><a href="#"><i class="far fa-bell"></i>Notifications</a></li>
 </ul>
+</div>
+{% block container %}
+<div class="post-box">
+        <div class="forms-control">
+                
+    <textarea rows="5" cols="80">
+                Write Your Post Here    </textarea> 
+         <button type="submit">Add</button>
+</div>
+{% endblock%}
+
 {% endblock %}
 {% endif  %}
 
