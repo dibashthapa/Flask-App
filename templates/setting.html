@@ -1,0 +1,23 @@
+{%extends "index.html" %}
+{% block container%} 
+<div class="setting">
+<div class="user-account">
+  <div class="user-account-child">
+<p>Email</p>
+
+<div class="user-account-Name">
+<input type="text" placeholder="Enter Your Name" value="{{datas['Name']}}">
+</div>
+<div class="user-account-Email">
+<input type="email" placeholder="Enter Your Email" value="{{datas['Email']}}">
+</div>
+<button type="submit">Update</button>
+  </div>
+</div>
+<div class="profile-picture">
+<div class="profile-picture-child">
+<p>Image</p>
+</div>
+</div>
+
+{%endblock%}
