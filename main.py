@@ -47,34 +47,47 @@ def register():
         "Email": details['Email'],
         "Password":details['Password']
         }
-        
+
+
         models.insert_table(data)
         return redirect("/login")
-
-@app.route("/upload",methods=['POST','GET'])
-def upload_file():
-    if request.method == 'POST':
-        file= request.files['image']
-        filename = secure_filename(file.filename)
-        session['filename']=filename
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for("run_profile",filename=filename))
+@app.route('/setting')
+def setting():
+    if 'Email' in session or 'Name' in session:
+        datas={
+            "Email":session['Email'],
+            "Name":session['Name']
+        }
+      
+        
+        return render_template("setting.html",datas=datas)
     else:
-        return redirect(request.url)
-
-
-@app.route('/upload/<filename>')
-def send_image(filename):
-    return send_from_directory("images", filename)
-
-@app.route("/profile")
-def run_profile():
-    if request.args.get("filename"):
-        filename=request.args.get("filename")
-        return redirect(url_for("home",filename=filename))
-    else:
-        return render_template("profile.html")
-
-
+        return render_template("base.html")
+#
+#@app.route("/upload",methods=['POST','GET'])
+#def upload_file():
+#    if request.method == 'POST':
+#        file= request.files['image']
+#        filename = secure_filename(file.filename)
+#        session['filename']=filename
+#        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#        return redirect(url_for("run_profile",filename=filename))
+#    else:
+#        return redirect(request.url)
+#
+#
+#@app.route('/upload/<filename>')
+#def send_image(filename):
+#    return send_from_directory("images", filename)
+#
+#@app.route("/profile")
+#def run_profile():
+#    if request.args.get("filename"):
+#        filename=request.args.get("filename")
+#        return redirect(url_for("home",filename=filename))
+#    else:
+#        return render_template("profile.html")
+#
+#
 if __name__ == '__main__':
     app.run(debug=True)
