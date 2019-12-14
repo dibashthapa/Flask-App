@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{%block container %}
+{%for peoples in people: %}
+<div class="people">
+  <img src="../static/images/dibash.jpg" height="50px" width="50px" style="border-radius:50%;">
+  <span>{{peoples[1]}}</span>
+  <br>
+  <button>Follow</button>
+</div>
+{%endfor%}
+{%endblock%}
