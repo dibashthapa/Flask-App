@@ -42,3 +42,9 @@ def get_posts(data):
   return mycursor.fetchall()
 
 
+def find_people(data):
+  query="SELECT * FROM Users WHERE NOT Email='%s'"
+  mycursor.execute(query%(data['Email']))
+  return mycursor.fetchall()
+
+  
