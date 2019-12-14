@@ -3,17 +3,21 @@
 <div class="setting">
 <div class="user-account">
   <div class="user-account-child">
-<p>Email</p>
-
+<p align="center">Email</p>
+<form action="/setting/update" method="POST">
 <div class="user-account-Name">
-<input type="text" placeholder="Enter Your Name" value="{{datas['Name']}}">
+    <label for="name">Name</label>
+<input type="text" name="Name" placeholder="Enter Your Name" value="{{datas['Name']}}">
 </div>
 <div class="user-account-Email">
-<input type="email" placeholder="Enter Your Email" value="{{datas['Email']}}">
+    <label for="email">Email</label>
+<input type="email" name="Email" placeholder="Enter Your Email" value="{{datas['Email']}}">
 </div>
 <button type="submit">Update</button>
+</form>
   </div>
 </div>
+
 <div class="profile-picture">
 <div class="profile-picture-child">
 <p>Image</p>

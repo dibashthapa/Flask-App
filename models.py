@@ -24,5 +24,21 @@ def select_table(data):
   return mycursor.fetchone()
 
 
-
+def update_form(data):
+  query="UPDATE `Users` SET `Name` = %s, `Email` = %s WHERE `Users`.`id` = %s"
+  values=(data['Name'],data['Email'],data['Id'])  
+  mycursor.execute(query,values)
+  mydb.commit()
 #
+def add_posts(data):
+  query="INSERT INTO Posts (Email,Post) VALUES(%s,%s)"
+  values=(data['email'],data['post'])
+  mycursor.execute(query,values)
+  mydb.commit()
+  
+def get_posts(data):
+  query="SELECT Post FROM Posts WHERE Email='%s'"
+  mycursor.execute(query%(data['Email']))
+  return mycursor.fetchall()
+
+

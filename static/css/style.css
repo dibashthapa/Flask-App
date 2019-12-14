@@ -84,7 +84,7 @@ height:400px;
     height:40px;
 }
 .dashboard{
-    height:600px;
+    height:500px;
     width: 250px;
     background-color:#faf0e6 ;
     margin:20px 0px 0px 10px;
@@ -115,12 +115,7 @@ height:400px;
     border-radius:10px;
     max-width:500px;
 }
-.post-box textarea {
-position:absolute;
-top:20px;
-left:20%;
-border-radius:5px;
-}
+
 .post-box button{
     position:relative;
     border:0px;
@@ -144,7 +139,10 @@ border-radius:5px;
 .setting .user-account,.profile-picture{
     height:250px;
     width:300px;
-    background-color:skyblue;
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 position:relative;
 left:12%;
 top:5%;
@@ -160,8 +158,43 @@ margin-top:20px;
 } 
 .user-account-child button {
     height:40px;
+    color:white;
     width:200px;
     border:0px;
     margin:20px 0px 0px 10px;
     background-color: rgba(35, 189, 29, 0.562);
 }
+.user-account-child p,label{
+    color:white;
+}
+.user-account-child label{
+    font-size:14px;
+  margin:5px;
+}
+.post{
+    height:50px;
+    position: absolute;
+    left:20%;
+    top:20px;
+    border-radius:10px;
+    max-width:600px;
+}
+.post ul li {
+    list-style: none;
+    padding:20px;
+    margin:20px;
+    font-size:19px;
+    font-family: 'Open Sans', sans-serif;  
+    background-color:rgba(124, 93, 93, 0.336);
+    color:white;
+    width:600px;
+    border-radius:10px;
+}
+.author{
+    position:relative;
+    left:84%;
+    bottom:10px;
+    background-color:green;
+    padding:10px;
+    border-radius:10px;
+    }
