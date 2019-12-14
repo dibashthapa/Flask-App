@@ -3,14 +3,12 @@
 
 
 <div class="post">
-       
-    
-            {%for post in datas['posts']: %}
-            <ul>
+        {%for post in datas['posts']: %}
+<ul>
             <li>{{ " | ".join(post)}}</li>  
                 <span class="author">Posted by {{datas['name']}}</span>
     
-            </ul>
+  </ul>
            
    
     {% endfor%}
