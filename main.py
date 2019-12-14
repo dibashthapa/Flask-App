@@ -7,9 +7,11 @@ app.config['UPLOAD_FOLDER']="images"
 app.secret_key="xjhdjhkjhskjhdkj"
 @app.route('/')
 def home():
-    if 'Name' in session:
+    if 'Email' in session:
         if(request.args.get("Name")):
             return render_template("index.html",Status=True,Name=session['Name'])
+        else:
+            return render_template("index.html")
        
     else:   
         return render_template("base.html")
@@ -31,6 +33,7 @@ def login():
             if account:
                 session['Email'] = account[2]
                 session['Name'] = account[1]
+                session['Id']=account[0]
                 return redirect(url_for('home',Name=account[1]))
             else:
                 return render_template("login.html", status=False)
@@ -63,6 +66,29 @@ def setting():
         return render_template("setting.html",datas=datas)
     else:
         return render_template("base.html")
+@app.route('/setting/update',methods=['GET','POST'])
+def updatesetting():
+    if request.method=="POST":
+        if 'Email' in session:
+            details=request.form
+            data={
+            "Name":details['Name'],
+           "Email":details['Email'],
+            "Id":session['Id']
+            }
+            
+            models.update_form(data)
+            return redirect("/setting")
+        else:
+            return redirect("/login")
+    else:
+        return redirect("/setting")
+
+@app.route('/logout')
+def logout():
+    for keys in session.keys():
+        session.pop(keys)
+        return redirect('/')
 #
 #@app.route("/upload",methods=['POST','GET'])
 #def upload_file():
@@ -89,5 +115,36 @@ def setting():
 #        return render_template("profile.html")
 #
 #
+@app.route('/add',methods=['GET','POST'])
+def add_post():
+    if request.method=='POST':
+        if 'Email' in session:
+            details=request.form
+            data={
+            "post":details['post'],
+            "email":session['Email']
+            }
+            
+            models.add_posts(data)
+            return redirect('/')
+    else:
+        return redirect("/blogs")
+@app.route('/blogs')
+def get_post():
+    if 'Email' in session:
+        data={
+            "Email":session['Email']
+        }
+        
+        posts=models.get_posts(data)
+        datas={
+            "posts":posts,
+            "name":session['Name']
+        }
+        return render_template("blogs.html",datas=datas)
+
+        
+    else:
+        return redirect("/login")
 if __name__ == '__main__':
     app.run(debug=True)
