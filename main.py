@@ -142,9 +142,18 @@ def get_post():
             "name":session['Name']
         }
         return render_template("blogs.html",datas=datas)
-
-        
     else:
         return redirect("/login")
+@app.route('/people')
+def find_people():
+    if 'Email' in session:
+        data={
+            "Email":session['Email']
+        }
+        peoples=models.find_people(data)
+        
+        return render_template("people.html",people=peoples)
+    else:
+        return redirect('/login')
 if __name__ == '__main__':
     app.run(debug=True)
