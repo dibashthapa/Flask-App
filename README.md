@@ -13,7 +13,8 @@ $pip install -r requirements.txt
 
 $python main.py
 ```
-
+####Demo
+https://flaskstudentapp.herokuapp.com
 
 
 ###### Configure database in your system
