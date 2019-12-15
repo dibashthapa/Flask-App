@@ -14,7 +14,6 @@ $pip install -r requirements.txt
 $python main.py
 ```
 #### Demo
-<br>
 https://flaskstudentapp.herokuapp.com
 
 
