@@ -1,10 +1,11 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="asdf",
-  database="hdhsghdg"
+   host="remotemysql.com",
+  user="gYdL5jxd1B",
+  passwd="QsEmI5HWGt",
+  database="gYdL5jxd1B"
+
 )
 mycursor = mydb.cursor()
 
@@ -47,4 +48,6 @@ def find_people(data):
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 
-  
+def set_timeout():
+    query="SET GLOBAL connect_timeout=6000"
+    mycursor.execute(query)
