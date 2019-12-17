@@ -179,5 +179,5 @@ def find_people():
     else:
         return redirect('/login')
 if __name__ == '__main__':
-    
+    models.set_timeout()
     app.run(debug=True)
