@@ -168,8 +168,7 @@ def find_people():
         
         image= " | ".join(filename[0])
         data={
-            "people":peoples,
-          "people_image":people_image
+            "people":peoples
         }
         if filename is not None:
             return render_template("people.html",data=data,filename=image)
