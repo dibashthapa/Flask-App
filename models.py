@@ -1,4 +1,4 @@
-im#port mysql.connector
+import mysql.connector
   #host="localhost",
   #user="root",
   #passwd="88645684",
@@ -70,9 +70,5 @@ def get_image(data):
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 
-def get_people_image(data):
-  query="SELECT * FROM Users WHERE NOT Email='%s'"
-  mycursor.execute(query%(data['Email']))
-  return mycursor.fetchall()
 
 
