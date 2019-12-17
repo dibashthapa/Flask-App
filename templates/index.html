@@ -2,15 +2,11 @@
 {% if Status==True %}
 {% block head %}{% endblock %}
 {% block content %}
-<div class="dashboard">
-{% if filename:%}
-<img class="profile-image" src="../static/images/{{filename}}" height="150px" width="150px" style="border-radius:50%">
-{% else :%}
-<img class="profile-image" src="../static/images/default.png" height="150px" width="150px" style="border-radius:50%;">
-{% endif %}
+
+<div class="navigation-menu">
     <ul>
 <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
-<li><a href="/blogs"><i class="fas fa-rss"></i>Blogs</a></li>
+<li><a href="/blogs"><i class="fas fa-rss"></i>Posts</a></li>
 <li><a href="/setting"><i class="fas fa-wrench"></i> Setting</a></li>
 
 <li><a href="#"><i class="far fa-envelope"></i>Messages</a></li>
@@ -18,8 +14,30 @@
 <li><a href="/people"><i class="fas fa-user"></i>People</a></li>
 <li><a href="/logout">Logout</a></li>
 </ul>
-</div>
+</div>  
+<!--<div class="dashboard">
+    {% if filename:%}
+    <img class="profile-image" src="../static/images/{{filename}}" height="150px" width="150px" style="border-radius:50%">
+    {% else :%}
+    <img class="profile-image" src="../static/images/default.png" height="150px" width="150px" style="border-radius:50%;">
+    {% endif %}
+    </div>
+-->
 {% block container %}
+<div class="box-container">
+    <div class="post-box">
+        <form action="/add" method="POST">
+            <div class="forms-control">
+            <textarea rows="10" cols="85"  name="post" placeholder="What's Happening?">
+                     
+            </textarea>
+        
+             <button type="submit">Add</button>
+            </form>
+    </div>
+
+</div>
+<!--
 <div class="post-box">
     <form action="/add" method="POST">
         <div class="forms-control">
@@ -30,6 +48,7 @@
          <button type="submit">Add</button>
         </form>
 </div>
+-->
 {% endblock%}
 
 {% endblock %}

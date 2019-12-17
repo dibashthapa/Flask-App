@@ -83,70 +83,50 @@ height:400px;
     width:200px;
     height:40px;
 }
-.dashboard{
-    height:700px;
-    width: 250px;
-    background-color:#faf0e6 ;
-    margin:20px 0px 0px 10px;
-    border-radius:20px;
-    box-shadow: 5px 10px 5px 10px rgba(128, 128, 128, 0.425);
-    float:left;
-    
-}   
-.dashboard .profile-image{
-    margin:10px 0px 0px 25%;
-}
-.dashboard ul li{
-    list-style: none;
-    font-family: 'Open Sans', sans-serif;   
-    font-size:15px;
-    margin:20px 0px 0px 38%;
-   
 
-}
-.dashboard ul li a{
-    text-decoration:none;
-    color:rgba(0, 0, 0, 0.6);
-    padding:0px 0px 5px 0px;
-}
+ 
+
+
+
 .post-box{
-    height:50px;
-    position:relative;
-    left:20%;
-    top:20px;
-    border-radius:10px;
-    max-width:500px;
+ position:relative;
+ left:5%;
+
+
 }
 
 .post-box button{
-    position:relative;
+   
     border:0px;
     background-color: lightskyblue;
     font-size:20px; 
     border-radius:10px;
     width:160px;
     height:40px;
-    top:200px;
-    left:-200px;
+  
+    
     }
+    
 .post-box textarea{
-    position: absolute;
-    left:10%;
+    margin-bottom:20px;
     border-radius:10px;
+    margin-top:50px;
+    
 }
+
 .setting{
     height:580px;
-    width:400px;
+    top:-20px;
+    width:700px;
     background-color:white;
     position:relative;
     left:30%;
-    top:20px;
-    border-radius:20px;
+    border-radius:10px;
 }
 .setting .user-account,.profile-picture{
     height:250px;
-    width:300px;
-    background: #0f0c29;  /* fallback for old browsers */
+    width:500px;
+    background: #3d215e42;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
@@ -161,15 +141,20 @@ margin-top:20px;
 }
 .user-account-child input{
    color:black;
+   width:250px;
     margin:20px 0px 0px 20px;
 } 
 .user-account-child button {
     height:40px;
     color:white;
-    width:200px;
-    border:0px;
-    margin:20px 0px 0px 10px;
+    width:100px;
+border-radius:5px;
+    border:none;
+    margin:20px 0px 0px 30px;
     background-color: rgba(35, 189, 29, 0.562);
+}
+.profile-picture-child p{
+    color:white;
 }
 .user-account-child p,label{
     color:white;
@@ -178,13 +163,18 @@ margin-top:20px;
     font-size:14px;
   margin:5px;
 }
+.user-account-Email {
+padding:10px;
+margin-left:28px;
+}
+.user-account-Name{
+    margin-left:40px;
+}
 .post{
     height:50px;
-    position: absolute;
-    left:20%;
-    top:20px;
+
     border-radius:10px;
-    max-width:600px;
+    max-width: 600px;
 }
 .post ul li {
     list-style: none;
@@ -196,6 +186,7 @@ margin-top:20px;
     color:white;
     width:600px;
     border-radius:10px;
+    position:relative;
 }
 .author{
     position:relative;
@@ -206,27 +197,59 @@ margin-top:20px;
     border-radius:10px;
     }
 .people{
-    position:relative;
-    left:30%;
-    top:20px;
-    height:200px;
-    width:400px;
-    background-color: blue;
-    border-radius:10px;
-    margin-bottom:20px;
+ width:300px;
+ height:200px;
+ background-color:rgba(0, 0, 255, 0.253); 
+margin:20px 0px 0px 10px;
+position:relative;
+left:30%;
+border-radius:10px;
+    
 }
-.people img{
+.people span{
     position:absolute;
-    left:30px;
-    top:10px;
-}
-.people span{ 
-    position:relative;
-    left:-40%;
     top:20px;
-    font-size:16px;
+    left:100px;
 }
 .people button{
-
+position:relative;  
+left:50%;
+top:-10px;
 font-family: 'Open Sans', sans-serif;   
+}
+.people img{
+position:relative;
+top:10px;
+left:10px;
+}
+.navigation-menu{
+  
+   
+    background-color: grey;
+    height:10vh;
+}
+.navigation-menu ul li {
+  float:left;
+    list-style:none;
+    width:120px;
+    height:40px;
+    margin:5px;
+    padding:20px;
+}
+.box-container{
+    width:50%;
+    background-color:rgba(255, 255, 255, 0.151);
+    position:relative;
+    left:25%;
+    height:87vh;    
+    overflow:auto;
+    top:-26px;
+ 
+}
+input[type=file] {
+margin-top:50px;
+margin-left:20px;
+}
+.people-container {
+    height:100%;
 }

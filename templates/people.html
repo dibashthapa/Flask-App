@@ -1,16 +1,14 @@
 {% extends "index.html" %}
 {%block container %}
 {%for people in data['people']: %}
-
+<div class="people-container">
 <div class="people">
-
- 
   <img src='../static/images/{{people[1]}}' height="50px" width="50px" style="border-radius:50%;">
   <span>{{people[0]}}</span>
-  <br>
+ 
   <button>Follow</button>
 </div>
-
+</div>
 {%endfor%}
 
 {%endblock%}
