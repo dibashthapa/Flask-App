@@ -58,7 +58,7 @@ def find_people(data):
   return mycursor.fetchall()
 
 def set_timeout():
-  query="SET GLOBAL connect_timeout=6000"
+  query="SET  max_allowed_packet = 128M"
   mycursor.execute(query)
 
 def insert_image(data):
