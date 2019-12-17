@@ -3,15 +3,19 @@
 {% block head %}{% endblock %}
 {% block content %}
 <div class="dashboard">
-<img class="profile-image" src="../static/images/dibash.jpg" height="150px" width="150px" style="border-radius:50%"></li>
-<ul>
+{% if filename:%}
+<img class="profile-image" src="../static/images/{{filename}}" height="150px" width="150px" style="border-radius:50%">
+{% else :%}
+<img class="profile-image" src="../static/images/default.png" height="150px" width="150px" style="border-radius:50%;">
+{% endif %}
+    <ul>
 <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
 <li><a href="/blogs"><i class="fas fa-rss"></i>Blogs</a></li>
 <li><a href="/setting"><i class="fas fa-wrench"></i> Setting</a></li>
 
 <li><a href="#"><i class="far fa-envelope"></i>Messages</a></li>
 <li><a href="#"><i class="far fa-bell"></i>Notifications</a></li>
-<li><a href="./people"><i class="fas fa-user"></i>People</a></li>
+<li><a href="/people"><i class="fas fa-user"></i>People</a></li>
 <li><a href="/logout">Logout</a></li>
 </ul>
 </div>

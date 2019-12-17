@@ -1,7 +1,14 @@
-import mysql.connector
-
+im#port mysql.connector
+  #host="localhost",
+  #user="root",
+  #passwd="88645684",
+  #database="API"
+#host="remotemysql.com",
+#  user="gYdL5jxd1B",
+#  passwd="QsEmI5HWGt",
+#  database="gYdL5jxd1B"
 mydb = mysql.connector.connect(
-   host="remotemysql.com",
+host="remotemysql.com",
   user="gYdL5jxd1B",
   passwd="QsEmI5HWGt",
   database="gYdL5jxd1B"
@@ -44,10 +51,28 @@ def get_posts(data):
 
 
 def find_people(data):
-  query="SELECT * FROM Users WHERE NOT Email='%s'"
+  query="SELECT Name,image FROM Users WHERE NOT Email='%s'"
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 
 def set_timeout():
-    query="SET GLOBAL connect_timeout=6000"
-    mycursor.execute(query)
+  query="SET GLOBAL connect_timeout=6000"
+  mycursor.execute(query)
+
+def insert_image(data):
+  query="UPDATE Users SET image=%s WHERE Email=%s"
+  values=(data['filename'],data['Email'])
+  mycursor.execute(query,values)
+  mydb.commit()
+
+def get_image(data):
+  query="SELECT image FROM Users WHERE Email='%s'"
+  mycursor.execute(query%(data['Email']))
+  return mycursor.fetchall()
+
+def get_people_image(data):
+  query="SELECT * FROM Users WHERE NOT Email='%s'"
+  mycursor.execute(query%(data['Email']))
+  return mycursor.fetchall()
+
+
