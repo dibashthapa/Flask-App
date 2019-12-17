@@ -163,9 +163,9 @@ def find_people():
             "Email":session['Email']
         }
         peoples=models.find_people(data)
-        print(peoples)
+        
         filename=models.get_image(data) 
-        people_image=models.get_people_image(data)
+        
         image= " | ".join(filename[0])
         data={
             "people":peoples,
