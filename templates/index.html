@@ -10,7 +10,7 @@
 <li><a href="/setting"><i class="fas fa-wrench"></i> Setting</a></li>
 
 <li><a href="#"><i class="far fa-envelope"></i>Messages</a></li>
-<li><a href="#"><i class="far fa-bell"></i>Notifications</a></li>
+<li><a href="/notification"><i class="far fa-bell"></i>Notifications</a></li>
 <li><a href="/people"><i class="fas fa-user"></i>People</a></li>
 <li><a href="/logout">Logout</a></li>
 </ul>
@@ -28,6 +28,7 @@
     <div class="post-box">
         <form action="/add" method="POST">
             <div class="forms-control">
+                <input type="text" placeholder="Enter the title" name="title">
             <textarea rows="10" cols="85"  name="post" placeholder="What's Happening?">
                      
             </textarea>

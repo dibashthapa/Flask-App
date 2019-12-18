@@ -57,9 +57,6 @@ def find_people(data):
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 
-def set_timeout():
-  query="SET  max_allowed_packet = 128M"
-  mycursor.execute(query)
 
 def insert_image(data):
   query="UPDATE Users SET image=%s WHERE Email=%s"

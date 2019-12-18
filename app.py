@@ -177,7 +177,17 @@ def find_people():
            
     else:
         return redirect('/login')
+
+#@app.route('/notification')
+#ef notify():
+#   if 'Email' in session:
+#       data={
+#           "Email":session['Email']
+#
+#       }
+#       peoples=models.find_people(data)
+#       return render_template("notifications.html",people=peoples)
+#   else:
+#       return redirect('/logout')
 if __name__ == '__main__':
-    models.set_timeout()
-    
     app.run(debug=True)
