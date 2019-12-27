@@ -3,16 +3,15 @@ import mysql.connector
   #user="root",
   #passwd="88645684",
   #database="API"
-#host="remotemysql.com",
+# host="remotemysql.com",
 #  user="gYdL5jxd1B",
 #  passwd="QsEmI5HWGt",
 #  database="gYdL5jxd1B"
 mydb = mysql.connector.connect(
-host="remotemysql.com",
-  user="gYdL5jxd1B",
+ host="remotemysql.com",
+ user="gYdL5jxd1B",
  passwd="QsEmI5HWGt",
  database="gYdL5jxd1B"
- 
 
 
 )
@@ -47,7 +46,7 @@ def add_posts(data):
   mydb.commit()
   
 def get_posts(data):
-  query="SELECT Post FROM Posts WHERE Email='%s'"
+  query="SELECT Post ,title FROM Posts WHERE Email='%s'"
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 

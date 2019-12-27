@@ -1,17 +1,25 @@
 {%extends "index.html" %}
 {% block container%} 
 
-<div class="box-container">
-<div class="post">
-        {%for post in datas['posts']: %}
-<ul>
-            <li>{{ " | ".join(post)}}</li>  
-                <span class="author">Posted by {{datas['name']}}</span>
+<div class="card bg-secondary">
+      
+<ul class="list-group card-body">
+	  <div class="container">
+			  {%for post in datas['posts']: %}
+			  
+			  
+			<li class="list-group-item card-text">{{post[0]}}</li>
+		
+	
+		
+                <span class="btn btn-info">Posted by {{datas['name']}}</span>
     
-  </ul>
-           
+  
+    
    
     {% endfor%}
 </div>
+</ul>
 </div>
+	
 {%endblock %}

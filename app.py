@@ -16,10 +16,10 @@ def home():
         
         if filename is not None:
             image= " | ".join(filename[0])
+
             return render_template("index.html",filename=image)
         else:
            return render_template("index.html")
-        return render_template("index.html")
     else:   
         return render_template("base.html")
 
@@ -138,7 +138,7 @@ def add_post():
 def get_post():
     if 'Email' in session:
         data={
-            "Email":session['Email']
+            "Email":session['Email']    
         }
         filename=models.get_image(data) 
     #
@@ -178,16 +178,30 @@ def find_people():
     else:
         return redirect('/login')
 
-#@app.route('/notification')
-#ef notify():
-#   if 'Email' in session:
-#       data={
-#           "Email":session['Email']
-#
-#       }
-#       peoples=models.find_people(data)
-#       return render_template("notifications.html",people=peoples)
-#   else:
-#       return redirect('/logout')
+@app.route('/notification')
+def notify():
+   if 'Email' in session:
+       data={
+           "Email":session['Email']
+
+       }
+       peoples=models.find_people(data)
+       return render_template("notifications.html",people=peoples)
+   else:
+       return redirect('/logout')
+
+@app.route('/user/<name>')
+def find_user(name):
+    data={
+            "Email":session['Email'],
+            "Name":name
+        }
+    posts=models.get_posts(data)
+    peoples=models.find_people(data)
+    for people in peoples:
+        if name==people[0]:
+           return render_template("profile.html",data=data,posts=posts)
+    else:
+        return render_template("profile.html")
 if __name__ == '__main__':
     app.run(debug=True)
