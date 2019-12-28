@@ -1,8 +1,10 @@
 from flask import *
+from flask_socketio import SocketIO, send, emit
 import os
 import models 
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
 app.config['UPLOAD_FOLDER']="static/images"
 app.secret_key="xjhdjhkjhskjhdkj"
 @app.route('/')
@@ -156,27 +158,36 @@ def get_post():
        
     else:
         return redirect("/login")
-@app.route('/people')
+@app.route('/people',methods=['GET','POST'])
 def find_people():
-    if 'Email' in session:
-        data={
-            "Email":session['Email']
-        }
-        peoples=models.find_people(data)
-        
-        filename=models.get_image(data) 
-        
-        image= " | ".join(filename[0])
-        data={
-            "people":peoples
-        }
-        if filename is not None:
-            return render_template("people.html",data=data,filename=image)
+    if request.method=='GET':
+        if 'Email' in session:
+            data={
+                "Email":session['Email']
+            }
+            peoples=models.find_people(data)
+            
+            filename=models.get_image(data) 
+            
+            image= " | ".join(filename[0])
+            data={
+                "people":peoples
+            }
+            if filename is not None:
+                return render_template("people.html",data=data,filename=image)
+            else:
+                return render_template("people.html",people=peoples)
         else:
-            return render_template("people.html",people=peoples)
-           
-    else:
-        return redirect('/login')
+            return redirect('/login')
+    elif request.method=='POST':
+        details=request.form
+        try:
+            name=details['Name']
+            return redirect(url_for('chats',name=name))
+        except:
+            btn_name=details['button']
+            name=details['name']
+            return redirect(url_for('follow',btn=btn_name,name=name))
 
 @app.route('/notification')
 def notify():
@@ -203,5 +214,42 @@ def find_user(name):
            return render_template("profile.html",data=data,posts=posts)
     else:
         return render_template("profile.html")
+
+@app.route('/chats')
+def chats():
+    if 'Email' in session:
+        if (request.args.get("name")):
+            Name= request.args.get("name")
+            current_user=session['Name']
+            return render_template("messages.html",name=Name,user=current_user)
+        else:
+            return redirect('/people')
+    else:
+        return redirect('/login')
+
+
+@socketio.on('message from user',namespace='/message')
+def handleMessage(data):
+    messages=data['messages']
+    print(messages)
+    emit('from flask',data,broadcast=True)
+
+@app.route('/follow',methods=['GET','POST'])
+def follow():
+    if 'Email' in session:
+        btn= request.args.get('btn')
+        name=request.args.get('name')
+        username=session['Name']
+        data={
+    "name":name,
+    "user":username
+        }
+        if btn=='following':
+            models.add_following(data)
+            return redirect('/people')
+        else:
+            return redirect('/people')
+    else:
+        return redirect('/login')
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app,host="127.0.0.1",debug=True)

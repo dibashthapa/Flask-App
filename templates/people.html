@@ -6,13 +6,15 @@
 <div class="card" style="width:400px;">
 	<div class="row card-body">
   <img src='../static/images/{{people[1]}}' height="50px" width="50px" class="rounded-circle">
-  <span >{{people[0]}}</span>
+  <form action="/people" method="POST">
+<input type="text" readonly="" name="name" value="{{people[0]}}">
   </div>
-
-   <button onclick="follow(this)" class="btn btn-primary">Follow</button>
-
- 
-
+   <input onclick="follow(this)" class="btn btn-primary" style="margin-bottom:5px" name="button" value="follow" type="submit">
+  </form>
+<form action="/people" method='POST'>
+	<input type="hidden" value="{{people[0]}}" name="Name">
+   <button class="btn btn-primary" type="submit" style="margin-bottom:5px">Message</button>
+</form>
 </div>
 
 

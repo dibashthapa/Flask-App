@@ -30,6 +30,71 @@ span{
 button[type=submit]{
     width:200px;
 }
+input[readonly='']{
+    border:0;
+    margin-left:5px;
+}
+
+.box-container ul li {
+  list-style:none;
+  color:white;
+
+ margin:20px; 
+ text-align:center;
+  max-width:200px;
+
+  width:100%;
+  
+  
+  background-color: #81BEF7;
+
+ 
+}
+
+.message-box{
+  height:40px;
+  width:600px;
+
+}
+#myMessage {
+
+   border:none;
+   border-bottom:1px solid black;
+position: relative;
+top:-10px;
+height:40px;
+
+left:273px;
+   width:600px;
+   margin-bottom:10px;
+
+
+}
+
+
+
+
+
+.fa-paper-plane{
+     font-size:20px;
+  position:absolute;
+  right:37%;
+
+}
+.box-container {
+  max-width:600px;
+  height:80vh;
+  overflow:auto;
+  position:relative;
+  left:20%;
+max-height:600px;
+  background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
 /*.navigation-bar{
     background-color:rgb(19, 40, 110);
     height:60px;
