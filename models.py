@@ -1,17 +1,19 @@
 import mysql.connector
-  #host="localhost",
-  #user="root",
-  #passwd="88645684",
-  #database="API"
-# host="remotemysql.com",
-#  user="gYdL5jxd1B",
-#  passwd="QsEmI5HWGt",
-#  database="gYdL5jxd1B"
+  # host="localhost",
+  # user="root",
+  # passwd="88645684",
+  # database="API"
+# host="remotemysql.com", user="gYdL5jxd1B", passwd="QsEmI5HWGt",
+# database="gYdL5jxd1B"
 mydb = mysql.connector.connect(
- host="remotemysql.com",
- user="gYdL5jxd1B",
- passwd="QsEmI5HWGt",
- database="gYdL5jxd1B"
+ # host="remotemysql.com",
+ # user="gYdL5jxd1B",
+ # passwd="QsEmI5HWGt",
+ # database="gYdL5jxd1B"
+ host="localhost",
+  user="root",
+  passwd="88645684",
+  database="API"
 
 
 )
@@ -46,7 +48,7 @@ def add_posts(data):
   mydb.commit()
   
 def get_posts(data):
-  query="SELECT Post ,title FROM Posts WHERE Email='%s'"
+  query="SELECT Post FROM Posts WHERE Email='%s'"
   mycursor.execute(query%(data['Email']))
   return mycursor.fetchall()
 
@@ -70,3 +72,8 @@ def get_image(data):
 
 
 
+def add_following(data):
+  sql="INSERT INTO user_details (Name,Following,Followers) VALUES(%s,%s,%s)"
+  values=(data['user'],data['name'],'none')
+  mycursor.execute(sql,values)
+  mydb.commit()

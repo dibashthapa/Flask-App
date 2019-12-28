@@ -1,0 +1,22 @@
+{%  extends "index.html" %}
+{% block container%}
+
+<input type="hidden" value="{{user}}" id="Name">
+
+<div class="box-container">
+	<div class="message-list">
+<ul id="messages"></ul>
+<ul id="typingMessages"></ul>
+</div>
+</div>
+<div class="message-box">	
+<input type="text" id="myMessage">
+
+
+<i class="fas fa-paper-plane" id="sendbutton" ></i>
+
+</div>
+
+
+{% endblock %}
+
