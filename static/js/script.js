@@ -1,8 +1,8 @@
 
 $(document).ready(function () {
     var currentUser,message,textToAppend;
-    var socket = io.connect("localhost");
-    var socket_messages = io.connect("localhost/message")
+    var socket = io.connect("https://flaskstudentapp.herokuapp.com");
+    var socket_messages = io.connect("https://flaskstudentapp.herokuapp.com/message")
     $('#sendbutton').on('click', function (data) {
         message = $('#myMessage').val();
         currentUser = $('#Name').val();
