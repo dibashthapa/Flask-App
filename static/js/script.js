@@ -1,8 +1,8 @@
 
 $(document).ready(function () {
     var currentUser,message,textToAppend;
-    var socket = io.connect("127.0.0.1:5000");
-    var socket_messages = io.connect("127.0.0.1:5000/message")
+    var socket = io.connect("localhost");
+    var socket_messages = io.connect("localhost/message")
     $('#sendbutton').on('click', function (data) {
         message = $('#myMessage').val();
         currentUser = $('#Name').val();
@@ -21,7 +21,7 @@ $('#messages').append(textToAppend)
 function follow(e){
     if (e.value=='follow'){
         e.value='following'
-        
+
     }
     else{
         e.value='follow'

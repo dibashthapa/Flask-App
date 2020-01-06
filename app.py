@@ -1,7 +1,7 @@
 from flask import *
 from flask_socketio import SocketIO, send, emit
 import os
-import models 
+import models
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -13,16 +13,16 @@ def home():
         data={
                'Email':session['Email']
            }
-       
-        filename=models.get_image(data) 
-        
+
+        filename=models.get_image(data)
+
         if filename is not None:
             image= " | ".join(filename[0])
 
             return render_template("index.html",filename=image)
         else:
            return render_template("index.html")
-    else:   
+    else:
         return render_template("base.html")
 
 #Login For user and setting session objects
@@ -33,12 +33,12 @@ def login():
         else:
             details = request.form
             data={
-            
+
              "Email": details['Email'],
             "Password" :details['Password']
             }
             account = models.select_table(data)
-            
+
             if account:
                 session['Email'] = account[2]
                 session['Name'] = account[1]
@@ -68,8 +68,8 @@ def setting():
             "Email":session['Email'],
             "Name":session['Name']
         }
-      
-        
+
+
         return render_template("setting.html",datas=datas)
     else:
         return render_template("base.html")
@@ -83,7 +83,7 @@ def updatesetting():
            "Email":details['Email'],
             "Id":session['Id']
             }
-            
+
             models.update_form(data)
             return redirect("/setting")
         else:
@@ -108,7 +108,7 @@ def upload_file():
                 "Email":session['Email'],
                 "filename":filename
             }
-            
+
             models.insert_image(data)
             return redirect('/')
         else:
@@ -131,7 +131,7 @@ def add_post():
             "post":details['post'],
             "email":session['Email']
             }
-            
+
             models.add_posts(data)
             return redirect('/')
     else:
@@ -140,12 +140,12 @@ def add_post():
 def get_post():
     if 'Email' in session:
         data={
-            "Email":session['Email']    
+            "Email":session['Email']
         }
-        filename=models.get_image(data) 
+        filename=models.get_image(data)
     #
         image= " | ".join(filename[0])
-        
+
         posts=models.get_posts(data)
         datas={
             "posts":posts,
@@ -155,7 +155,7 @@ def get_post():
            return render_template("blogs.html",datas=datas, filename=image)
         else:
             return render_template("blogs.html",data=datas)
-       
+
     else:
         return redirect("/login")
 @app.route('/people',methods=['GET','POST'])
@@ -166,9 +166,9 @@ def find_people():
                 "Email":session['Email']
             }
             peoples=models.find_people(data)
-            
-            filename=models.get_image(data) 
-            
+
+            filename=models.get_image(data)
+
             image= " | ".join(filename[0])
             data={
                 "people":peoples
@@ -252,4 +252,4 @@ def follow():
     else:
         return redirect('/login')
 if __name__ == '__main__':
-    socketio.run(app,host="127.0.0.1",debug=True)
+    socketio.run(app,debug=True)
