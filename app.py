@@ -15,7 +15,6 @@ def home():
            }
 
         filename=models.get_image(data)
-
         if filename is not None:
             image= " | ".join(filename[0])
 
@@ -231,7 +230,6 @@ def chats():
 @socketio.on('message from user',namespace='/message')
 def handleMessage(data):
     messages=data['messages']
-    print(messages)
     emit('from flask',data,broadcast=True)
 
 @app.route('/follow',methods=['GET','POST'])

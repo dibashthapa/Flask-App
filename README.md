@@ -20,5 +20,5 @@ https://flaskstudentapp.herokuapp.com
 ###### Configure database in your system
 1.Install PhpmyAdmin and Mysql <br>
 2.Create a database 'API' <br>
-3.Create a 'User' table and create the columns i.e. id, Name, Email , Password respectively <br>
+3.Import localhost.sql in your mysql database(phpmyadmin)
 4.Congrats , Now You are done

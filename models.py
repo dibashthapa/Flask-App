@@ -6,11 +6,14 @@ import mysql.connector
 # host="remotemysql.com", user="gYdL5jxd1B", passwd="QsEmI5HWGt",
 # database="gYdL5jxd1B"
 mydb = mysql.connector.connect(
- host="remotemysql.com",
- user="gYdL5jxd1B",
- passwd="QsEmI5HWGt",
- database="gYdL5jxd1B"
-
+ # host="remotemysql.com",
+ # user="gYdL5jxd1B",
+ # passwd="QsEmI5HWGt",
+ # database="gYdL5jxd1B"
+ host="localhost",
+ user="root",
+ passwd="88645684",
+ database="API"
 
 
 )
@@ -28,7 +31,6 @@ def insert_table(data):
 def select_table(data):
   query_string = "SELECT * FROM Users WHERE Email = %s AND Password=%s"
   mycursor.execute(query_string,(data['Email'],data['Password']))
-
   return mycursor.fetchone()
 
 
