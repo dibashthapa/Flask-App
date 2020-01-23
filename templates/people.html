@@ -1,23 +1,19 @@
 {% extends "index.html" %}
 {%block container %}
 
-<div class="container">
 {%for people in data['people']: %}
-<div class="card" style="width:400px;">
-	<div class="row card-body">
-  <img src='../static/images/{{people[1]}}' height="50px" width="50px" class="rounded-circle">
-  <form action="/people" method="POST">
-<input type="text" readonly="" name="name" value="{{people[0]}}">
+<div class="card" style="width: 18rem;">
+	{% if people==" ": %}
+  <img class="card-img-top" src="../static/images/{{people[1]}}" alt="Card image cap">
+	{% else: %}
+	<img class="card-img-top" src="../static/images/default.png" alt="Card image cap">
+	{% endif %}
+  <div class="card-body">
+		<h5 class="card-title">{{people[0]}}</h5>
+    <p class="card-text"></p>
   </div>
-   <input onclick="follow(this)" class="btn btn-primary" style="margin-bottom:5px" name="button" value="follow" type="submit">
-  </form>
-<form action="/people" method='POST'>
-	<input type="hidden" value="{{people[0]}}" name="Name">
-   <button class="btn btn-primary" type="submit" style="margin-bottom:5px">Message</button>
-</form>
 </div>
-
 
 {%endfor%}
-</div>
+
 {%endblock%}

@@ -23,8 +23,8 @@ mycursor = mydb.cursor()
 
 def insert_table(data):
 
-  sql="INSERT INTO Users (Name, Email, Password) VALUES(%s, %s, %s)"
-  values=(data["Name"], data["Email"], data["Password"])
+  sql="INSERT INTO Users (Name, Email, Password, image) VALUES(%s, %s, %s, %s)"
+  values=(data["Name"], data["Email"], data["Password"], " ")
   mycursor.execute(sql,values)
   mydb.commit()
 

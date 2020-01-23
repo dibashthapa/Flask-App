@@ -14,6 +14,7 @@ def home():
                'Email':session['Email']
            }
 
+
         filename=models.get_image(data)
         if filename is not None:
             image= " | ".join(filename[0])
@@ -25,41 +26,39 @@ def home():
         return render_template("base.html")
 
 #Login For user and setting session objects
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
-        if request.method == 'GET':
-            return render_template("login.html")
+    if request.method=="POST":
+        details = request.form
+        data={
+        "Email": details['Email'],
+        "Password" :details['Password']
+        }
+        account = models.select_table(data)
+        if account:
+            session['Email'] = account[2]
+            session['Name'] = account[1]
+            session['Id']=account[0]
+            return redirect('/')
         else:
-            details = request.form
-            data={
+            return redirect(url_for("/",status="loginError"))
+    else:
+        return "url not found"
 
-             "Email": details['Email'],
-            "Password" :details['Password']
-            }
-            account = models.select_table(data)
-
-            if account:
-                session['Email'] = account[2]
-                session['Name'] = account[1]
-                session['Id']=account[0]
-                return redirect('/')
-            else:
-                return render_template("login.html", status=False)
 
 #Resgistran for User
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'GET':
-        return render_template("register.html")
-    elif request.method == 'POST':
+    if request.method == 'POST':
         details = request.form
         data={
         "Name": details['Name'],
         "Email": details['Email'],
         "Password":details['Password']
+
         }
-        models.insert_table(data)
-        return redirect("/login")
+    models.insert_table(data)
+    return redirect("/")
 @app.route('/setting')
 def setting():
     if 'Email' in session:
@@ -71,7 +70,8 @@ def setting():
 
         return render_template("setting.html",datas=datas)
     else:
-        return render_template("base.html")
+        return redirect("/logout")
+
 @app.route('/setting/update',methods=['GET','POST'])
 def updatesetting():
     if request.method=="POST":
@@ -86,7 +86,7 @@ def updatesetting():
             models.update_form(data)
             return redirect("/setting")
         else:
-            return redirect("/login")
+            return redirect("/logout")
     else:
         return redirect("/setting")
 
@@ -113,7 +113,7 @@ def upload_file():
         else:
            return redirect('/setting')
     else:
-        return redirect('/login')
+        return redirect('/logout')
 @app.route('/upload/<filename>')
 def send_image(filename):
     return send_from_directory("images", filename)
@@ -167,15 +167,15 @@ def find_people():
             peoples=models.find_people(data)
 
             filename=models.get_image(data)
-
             image= " | ".join(filename[0])
             data={
                 "people":peoples
             }
-            if filename is not None:
-                return render_template("people.html",data=data,filename=image)
-            else:
+            if filename is None:
                 return render_template("people.html",people=peoples)
+            else:
+                return render_template("people.html",data=data,filename=image)
+
         else:
             return redirect('/login')
     elif request.method=='POST':
@@ -248,6 +248,6 @@ def follow():
         else:
             return redirect('/people')
     else:
-        return redirect('/login')
+        return redirect("/logout")
 if __name__ == '__main__':
     socketio.run(app,debug=True)

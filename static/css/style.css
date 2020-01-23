@@ -10,6 +10,15 @@ body{
     
 }
 */
+.background-image{
+    background:url("https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80");
+
+    background-repeat:no-repeat;
+    background-size: cover;
+    height:92vh;
+
+
+}
 .footer {
     position:fixed;
 left:0;
@@ -94,7 +103,13 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
 
 }
 
-
+.form-container{
+    border:1px solid grey;
+    width:400px;
+    height:400px;   
+    border-radius:10px;
+    padding:50px 100px;
+}
 /*.navigation-bar{
     background-color:rgb(19, 40, 110);
     height:60px;
